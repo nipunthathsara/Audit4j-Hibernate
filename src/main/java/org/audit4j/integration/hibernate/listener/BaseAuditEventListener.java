@@ -15,26 +15,26 @@
  * limitations under the License.
  */
 
-package org.audit4j.integration.hibernate.bootstrap;
+package org.audit4j.integration.hibernate.listener;
 
-import org.hibernate.service.Service;
+import org.audit4j.integration.hibernate.bootstrap.AuditService;
 
 /**
- * The Interface AuditService.
- * 
  * @author <a href="mailto:janith3000@gmail.com">Janith Bandara</a>
  */
-public interface AuditService extends Service{
-    
+public class BaseAuditEventListener {
+
+    /** The audit service. */
+    private final AuditService auditService;
+
     /**
-     * Checks if is initialized.
+     * Instantiates a new base audit event listener.
      *
-     * @return true, if is initialized
+     * @param auditService
+     *            the audit service
      */
-    boolean isInitialized();
-    
-    /**
-     * Inits the.
-     */
-    void init();
+    protected BaseAuditEventListener(AuditService auditService) {
+        this.auditService = auditService;
+    }
+
 }
