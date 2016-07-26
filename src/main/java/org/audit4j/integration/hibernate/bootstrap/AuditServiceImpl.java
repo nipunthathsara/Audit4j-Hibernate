@@ -21,8 +21,7 @@ import java.util.Map;
 
 import org.audit4j.core.AuditManager;
 import org.audit4j.core.Configuration;
-import org.hibernate.internal.util.config.ConfigurationHelper;
-import org.hibernate.service.ServiceRegistry;
+import org.audit4j.core.IAuditManager;
 import org.hibernate.service.spi.Configurable;
 import org.hibernate.service.spi.Startable;
 import org.hibernate.service.spi.Stoppable;
@@ -39,7 +38,7 @@ public class AuditServiceImpl implements AuditService, Startable, Stoppable, Con
     
     /** The is configuration available. */
     private boolean isConfigurationAvailable;
-
+    
     /* (non-Javadoc)
      * @see org.hibernate.service.spi.Configurable#configure(java.util.Map)
      */
