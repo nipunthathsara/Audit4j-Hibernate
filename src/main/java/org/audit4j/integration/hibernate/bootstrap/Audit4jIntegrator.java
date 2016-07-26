@@ -48,6 +48,7 @@ public class Audit4jIntegrator implements Integrator {
         // Registor listeners..
         final EventListenerRegistry listenerRegistry = serviceRegistry
                 .getService(EventListenerRegistry.class);
+
         listenerRegistry.appendListeners(EventType.POST_INSERT,
                 new AuditPostInsertEventListenerImpl(auditService));
         listenerRegistry.appendListeners(EventType.POST_UPDATE,
@@ -56,8 +57,13 @@ public class Audit4jIntegrator implements Integrator {
                 new AuditPostDeleteEventListenerImpl(auditService));
     }
 
-    /* (non-Javadoc)
-     * @see org.hibernate.integrator.spi.Integrator#disintegrate(org.hibernate.engine.spi.SessionFactoryImplementor, org.hibernate.service.spi.SessionFactoryServiceRegistry)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.hibernate.integrator.spi.Integrator#disintegrate(org.hibernate.engine
+     * .spi.SessionFactoryImplementor,
+     * org.hibernate.service.spi.SessionFactoryServiceRegistry)
      */
     @Override
     public void disintegrate(SessionFactoryImplementor arg0, SessionFactoryServiceRegistry arg1) {
