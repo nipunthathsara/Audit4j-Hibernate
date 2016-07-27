@@ -1,0 +1,26 @@
+/*C1*/SET SCHEMA SYSTEM_LOBS
+INSERT INTO BLOCKS VALUES(0,2147483647,0)
+COMMIT
+/*C2*/SET SCHEMA PUBLIC
+create table if not exists audit (uuid varchar(200) NOT NULL,timestamp varchar(100) NOT NULL,actor varchar(200) NOT NULL,origin varchar(200),action varchar(200) NOT NULL,elements varchar(20000))
+DISCONNECT
+/*C3*/SET SCHEMA PUBLIC
+INSERT INTO AUDIT VALUES('-264449221550456732','Tue Jul 26 11:27:56 IST 2016','anonymous','0:0:0:0:0:0:0:1','login','arg0 java.lang.String:test, arg1 java.lang.String:***, ')
+COMMIT
+DISCONNECT
+/*C4*/SET SCHEMA PUBLIC
+INSERT INTO AUDIT VALUES('9073235996356331520','Tue Jul 26 11:42:35 IST 2016','test','0:0:0:0:0:0:0:1','addInventoryItem','itemName java.lang.String:Iphone6, itemValue java.lang.Double:600.5, ')
+COMMIT
+DISCONNECT
+/*C5*/SET SCHEMA PUBLIC
+INSERT INTO AUDIT VALUES('827615442271158498','Tue Jul 26 11:55:15 IST 2016','test','0:0:0:0:0:0:0:1','getUserByuserName','arg0 java.lang.String:admin, ')
+COMMIT
+DISCONNECT
+/*C6*/SET SCHEMA PUBLIC
+INSERT INTO AUDIT VALUES('-3841659362980977','Tue Jul 26 11:56:58 IST 2016','test','0:0:0:0:0:0:0:1','checkoutPayment','arg0 org.audt4j.demo.spring.model.Payment:org.audt4j.demo.spring.model.Payment[totalPrize=600.5,user=john,items=java.util.ArrayList[elementData=class java.lang.Object[]{org.audt4j.demo.spring.service.Item[name=Iphone6,value=600.5][],null,null,null,null,null,null,null,null,null},size=1][modCount=1][][]][], ')
+COMMIT
+DISCONNECT
+/*C7*/SET SCHEMA PUBLIC
+INSERT INTO AUDIT VALUES('-8116979640941264037','Tue Jul 26 12:03:54 IST 2016','test','0:0:0:0:0:0:0:1','savePayment','paymentUserId java.lang.String:john, paymentItems java.util.ArrayList:java.util.ArrayList[elementData=class java.lang.Object[]{org.audt4j.demo.spring.service.Item[name=Iphone6,value=600.5][],null,null,null,null,null,null,null,null,null},size=1][modCount=1][][], ')
+COMMIT
+DISCONNECT
