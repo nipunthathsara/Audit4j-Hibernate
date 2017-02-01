@@ -37,6 +37,7 @@ import org.hibernate.type.Type;
  * @author T-NipunT
  * @author <a href="mailto:janith3000@gmail.com">Janith Bandara</a>
  */
+@Deprecated
 public class AuditInterceptor extends EmptyInterceptor {
 
     private static final long serialVersionUID = 2993840809041948451L;

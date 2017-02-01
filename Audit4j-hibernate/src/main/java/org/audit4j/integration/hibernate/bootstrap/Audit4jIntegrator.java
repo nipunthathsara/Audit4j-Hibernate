@@ -22,6 +22,7 @@ import org.audit4j.integration.hibernate.listener.AuditPostDeleteEventListenerIm
 import org.audit4j.integration.hibernate.listener.AuditPostInsertEventListenerImpl;
 import org.audit4j.integration.hibernate.listener.AuditPostUpdateEventListenerImpl;
 import org.hibernate.boot.Metadata;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.hibernate.event.service.spi.EventListenerRegistry;
 import org.hibernate.event.spi.EventType;
@@ -38,14 +39,21 @@ public class Audit4jIntegrator implements Integrator {
     @Override
     public void integrate(Metadata metadata, SessionFactoryImplementor sessionFactory,
             SessionFactoryServiceRegistry serviceRegistry) {
-        final AuditService auditService = serviceRegistry.getService(AuditService.class);
+    }
 
+    public void integrate(Configuration configuration, SessionFactoryImplementor sessionFactory,
+            SessionFactoryServiceRegistry serviceRegistry) {
+        System.out.println("Integrating......");
+
+        //final AuditService auditService = serviceRegistry.getService(AuditService.class);
+        final AuditService auditService = new AuditServiceImpl();
+        auditService.init();
         if (!auditService.isInitialized()) {
             throw new InitializationException(
                     "Audit4j hibernate integration can not be initialized..");
         }
 
-        // Registor listeners..
+        // Register listeners..
         final EventListenerRegistry listenerRegistry = serviceRegistry
                 .getService(EventListenerRegistry.class);
 

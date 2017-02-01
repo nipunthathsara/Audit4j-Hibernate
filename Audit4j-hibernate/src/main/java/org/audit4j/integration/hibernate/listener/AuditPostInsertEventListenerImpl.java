@@ -17,7 +17,10 @@
 
 package org.audit4j.integration.hibernate.listener;
 
+import javax.persistence.Table;
+
 import org.audit4j.core.AuditManager;
+import org.audit4j.core.annotation.Audit;
 import org.audit4j.core.dto.EventBuilder;
 import org.audit4j.integration.hibernate.bootstrap.AuditService;
 import org.hibernate.event.spi.PostInsertEvent;
@@ -39,21 +42,27 @@ public class AuditPostInsertEventListenerImpl extends BaseAuditEventListener
      */
     public AuditPostInsertEventListenerImpl(AuditService auditService) {
         super(auditService);
+        System.out.println("listerner inoit");
     }
 
+    public void init(){}
     /* (non-Javadoc)
      * @see org.hibernate.event.spi.PostInsertEventListener#onPostInsert(org.hibernate.event.spi.PostInsertEvent)
      */
     @Override
     public void onPostInsert(PostInsertEvent event) {
         // TODO
-        // Check audit annotation enabled.
         // Repository check, get from Audit annotation, get from entoity table
         // name.
 
-        AuditManager.getInstance().audit(new EventBuilder()
-                .addAction("save " + event.getEntity().getClass().toString())
-                .addField(event.getEntity().getClass().toString(), event.getEntity()).build());
+        if (event.getEntity().getClass().isAnnotationPresent(Audit.class)) {
+            if (event.getEntity().getClass().isAnnotationPresent(Table.class)) {
+                
+            }
+            AuditManager.getInstance().audit(new EventBuilder()
+                    .addAction("save " + event.getEntity().getClass().toString())
+                    .addField(event.getEntity().getClass().toString(), event.getEntity()).build());
+        }
     }
 
     /* (non-Javadoc)
