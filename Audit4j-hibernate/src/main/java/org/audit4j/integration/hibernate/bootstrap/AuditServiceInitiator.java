@@ -22,8 +22,6 @@ import java.util.Map;
 import org.hibernate.boot.registry.StandardServiceInitiator;
 import org.hibernate.service.spi.ServiceRegistryImplementor;
 
-import sun.audio.AudioDevice;
-
 /**
  * The Class AuditServiceInitiator.
  * 
